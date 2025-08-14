@@ -57,3 +57,35 @@ This can also be used to control which fork is used, though only upstream `qmk_f
 1. (First time only) `git submodule add https://github.com/qmk/qmk_firmware.git`
 1. (To update) `git submodule update --init --recursive`
 1. Commit your changes to your userspace repository
+
+## Additional documentation
+| This needs to be adjusted for readability.
+
+### Setting up the environment
+1. make sure you have python3 amd python3-venv installed
+2. clone this repo to a local folder
+3. cd into that folder
+4. install qmk_cli via python
+    ```
+    # on linux
+    python3 -m venv --upgrade-deps .venv
+    source .venv/bin/activate
+    pip install qmk
+
+    # on mac
+    brew install qmk/qmk/qmk teensy_loader_cli
+    ```
+5. update submodules
+    ```
+    git submodule update --init --recursive
+    ```
+6. install os dependencies (follow on-screen steps)
+    ```
+    # on mac
+    qmk setup -H $(realpath ./firmware)
+    ```
+7. build keyboard and flash
+    ```
+    qmk compile -kb kinesis/kint41 -km cadusk
+    qmk flash -kb kinesis/kint41 -km cadusk
+    ```
